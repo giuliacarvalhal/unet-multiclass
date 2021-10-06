@@ -38,9 +38,9 @@ class BreastPhantom(Dataset):
     def __getitem__(self, index):
         image = Image.open(self.img_path+'/'+self.XImg_list[index])
         y = Image.open(self.mask_path+'/'+self.yLabel_list[index])
-        border = (0, 1, 0, 0) # left, top, right, bottom
-        y = ImageOps.crop(y, border)
-        image = image / np.max(img) if max_val is None else image / max_val
+        y = y.crop((0,1,98,256))
+        image = image.astype('uint8')
+        image = image / np.max(image) if max_val is None else image / max_val
         if int8:
           image = (image * 255).astype(np.uint8)        
         image = Image.open(image).convert("RGB")
