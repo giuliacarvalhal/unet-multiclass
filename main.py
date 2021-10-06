@@ -1,6 +1,4 @@
 import torch
-import albumentations as A
-from albumentations.pytorch import ToTensorV2
 from torch.nn.modules import loss
 from tqdm import tqdm
 import torch.nn as nn
@@ -78,8 +76,8 @@ def main():
         VAL_IMG_DIR,
         VAL_MASK_DIR,
         BATCH_SIZE,
-        train_transforms,
-        val_transforms,
+        #train_transforms,
+        #val_transforms,
         NUM_WORKERS,
         PIN_MEMORY,
     )
