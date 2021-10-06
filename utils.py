@@ -1,7 +1,7 @@
 import torch
 from torch.utils.data import DataLoader
 from torchvision import datasets, utils, transforms
-from datasets import BreastPhantom
+from data import BreastPhantom
 from PIL import Image
 from tqdm import tqdm
 import numpy as np
@@ -29,8 +29,8 @@ def get_loaders(
     pin_memory=True,
 ):
 
-    train_ds = PhantomDataset(
-        image_path=train_dir,
+    train_ds = BreastPhantom(
+        img_path=train_dir,
         mask_path=train_maskdir,
         transform=train_transform,
     )
@@ -40,11 +40,11 @@ def get_loaders(
         batch_size=batch_size,
         num_workers=num_workers,
         pin_memory=pin_memory,
-        shuffle=True,
+        shuffle=False,
     )
 
-    val_ds = PhantomDataset(
-        image_path=val_dir,
+    val_ds = BreastPhantom(
+        img_path=val_dir,
         mask_path=val_maskdir,
         transform=val_transform,
     )
